@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Profil</title>
+</head>
+<body>
+
+    <h1>Mon Profil</h1>
+
+    <!-- Formulaire de modification du profil -->
+    <form th:action="@{/profile/update}" method="post">
+        <label>Bio :</label>
+        <textarea name="bio" th:text="${profile.bio}"></textarea>
+
+        <label>Compétences :</label>
+        <input type="text" name="skills" th:value="${profile.skills}"/>
+
+        <label>Langues :</label>
+        <input type="text" name="languages" th:value="${profile.languages}"/>
+
+        <label>Expériences :</label>
+        <textarea name="experiences" th:text="${profile.experiences}"></textarea>
+
+        <button type="submit">Modifier</button>
+    </form>
+
+    <hr/>
+
+    <!-- Liste des projets -->
+    <h2>Mes Projets</h2>
+    <ul>
+        <li th:each="project : ${projects}">
+            <span th:text="${project.title}"></span> —
+            <span th:text="${project.description}"></span>
+            <a th:href="@{/profile/projects/delete/{id}(id=${project.id})}">Supprimer</a>
+        </li>
+    </ul>
+
+    <!-- Ajouter un projet -->
+    <h3>Ajouter un projet</h3>
+    <form th:action="@{/profile/projects/add}" method="post">
+        <input type="text" name="title" placeholder="Titre"/>
+        <input type="text" name="description" placeholder="Description"/>
+        <input type="text" name="techStack" placeholder="Technologies"/>
+        <input type="text" name="github" placeholder="Lien GitHub"/>
+        <button type="submit">Ajouter</button>
+    </form>
+
+</body>
+</html>

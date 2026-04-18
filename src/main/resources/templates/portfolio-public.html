@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${portfolio.personne.prenom} + ' ' + ${portfolio.personne.nom} + ' - Portfolio'">
+        Portfolio Étudiant
+    </title>
+</head>
+<body>
+
+    <h1 th:text="${portfolio.personne.prenom} + ' ' + ${portfolio.personne.nom}">
+        Nom Étudiant
+    </h1>
+
+    <p th:text="${portfolio.personne.universite}">Université</p>
+    <p th:text="${portfolio.personne.formation}">Formation</p>
+
+    <hr/>
+
+    <!-- Contenu du portfolio en lecture seule -->
+    <div>
+        <h2>Portfolio</h2>
+        <p th:text="${portfolio.generatedContent}">Contenu du portfolio...</p>
+    </div>
+
+</body>
+</html>

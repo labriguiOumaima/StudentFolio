@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Portfolio</title>
+</head>
+<body>
+
+    <h1>Mon Portfolio</h1>
+
+    <!-- Contenu généré par IA -->
+    <div>
+        <h2>Contenu généré</h2>
+        <p th:text="${portfolio.generatedContent}">Aucun contenu généré pour le moment.</p>
+    </div>
+
+    <!-- Bouton Générer -->
+    <form th:action="@{/portfolio/generate}" method="post">
+        <button type="submit">Générer avec IA</button>
+    </form>
+
+    <!-- Bouton Publier / Dépublier -->
+    <form th:action="@{/portfolio/publish}" method="post">
+        <button type="submit" th:text="${portfolio.isPublished} ? 'Dépublier' : 'Publier'">
+            Publier
+        </button>
+    </form>
+
+    <!-- URL publique si publié -->
+    <div th:if="${portfolio.isPublished}">
+        <p>Votre portfolio est accessible ici :</p>
+        <a th:href="@{/p/{url}(url=${portfolio.publicUrl})}" 
+           th:text="${portfolio.publicUrl}">
+        </a>
+    </div>
+
+    <!-- Bouton Exporter PDF -->
+    <form th:action="@{/portfolio/export}" method="post">
+        <button type="submit">Exporter PDF</button>
+    </form>
+
+</body>
+</html>
